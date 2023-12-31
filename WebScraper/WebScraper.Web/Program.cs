@@ -1,4 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using WebScraper.Application.Interface;
+using WebScraper.Infrastructure.DataAccess;
+using WebScraper.Infrastructure.Service;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add application services.
+//builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IWebScrapingService, WebScrapingService>();
+builder.Services.AddScoped<PasswordHashService>();
+builder.Services.AddScoped<JwtService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
