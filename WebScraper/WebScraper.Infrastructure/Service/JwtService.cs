@@ -10,22 +10,25 @@ using WebScraper.Domain.Models;
 
 namespace WebScraper.Infrastructure.Service
 {
+    public class JwtSettings
+    {
+        public string Key { get; set; }
+        public string Issuer { get; set; }
+        public string Audience { get; set; }
+    }
+
     public class JwtService
     {
-        private readonly string _secret;
-        private readonly string _issuer;
-        private readonly string _audience;
+        private readonly JwtSettings _settings;
 
-        public JwtService(string secret, string issuer, string audience)
+        public JwtService(JwtSettings settings)
         {
-            _secret = secret;
-            _issuer = issuer;
-            _audience = audience;
+            _settings = settings;
         }
 
         public string GenerateToken(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -35,7 +38,7 @@ namespace WebScraper.Infrastructure.Service
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var token = new JwtSecurityToken(_issuer, _audience, claims, expires: DateTime.Now.AddHours(3), signingCredentials: creds);
+            var token = new JwtSecurityToken(_settings.Issuer, _settings.Audience, claims, expires: DateTime.Now.AddHours(3), signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
