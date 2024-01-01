@@ -31,11 +31,10 @@ namespace WebScraper.Web.Pages
             try
             {
                 var user = await _authenticationService.RegisterUser(RegistrationDto);
-                // Handle registration success, e.g., log in the user, redirect, etc.
+                return RedirectToPage("/Login");
             }
             catch (Exception ex)
             {
-                // Handle registration failure
                 ModelState.AddModelError(string.Empty, "User registration failed.");
             }
 
