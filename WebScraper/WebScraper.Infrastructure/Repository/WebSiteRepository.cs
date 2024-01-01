@@ -19,14 +19,19 @@ namespace WebScraper.Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<List<WebSite>> GetAllWebsitesAsync()
+        public IQueryable<WebSite> GetAllWebsitesAsQueryable(int userId)
         {
-            return await _context.Websites.ToListAsync();
+            return _context.Websites.Include("ScrapedUrls").Where(x => x.UserId == userId).AsQueryable();
         }
 
-        public async Task<List<ScrapedUrl>> GetScrapedUrlsByWebsiteAsync(int websiteId)
+        public IQueryable<ScrapedUrl> GetScrapedUrlsByWebsiteAsQueryable(int websiteId)
         {
-            return await _context.ScrapedUrls.Where(url => url.WebSiteId == websiteId).ToListAsync();
+            return _context.ScrapedUrls.Where(url => url.WebSiteId == websiteId).AsQueryable();
+        }
+
+        public async Task AddWebSiteUrls(WebSite webSite) { 
+            await _context.Websites.AddAsync(webSite);
+            await _context.SaveChangesAsync();
         }
     }
 }

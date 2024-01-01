@@ -14,12 +14,12 @@ namespace WebScraper.Infrastructure.Service
     {
         private readonly IUserRepository _userRepository; // Assuming you have a user repository
         private readonly PasswordHashService _passwordHashService;
-        private readonly JwtService _jwtService;
+        private readonly IJwtService _jwtService;
 
         public AuthenticationService(
             IUserRepository userRepository,
             PasswordHashService passwordHashService,
-            JwtService jwtService)
+            IJwtService jwtService)
         {
             _userRepository = userRepository;
             _passwordHashService = passwordHashService;
@@ -39,6 +39,7 @@ namespace WebScraper.Infrastructure.Service
 
             var user = new User
             {
+                Name= registrationDto.Name,
                 Email = registrationDto.Email,
                 PasswordHash = hashedPassword
             };

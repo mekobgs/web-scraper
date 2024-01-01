@@ -9,7 +9,8 @@ namespace WebScraper.Domain.Repository
 {
     public interface IWebSiteRepository
     {
-        Task<List<WebSite>> GetAllWebsitesAsync();
-        Task<List<ScrapedUrl>> GetScrapedUrlsByWebsiteAsync(int websiteId);
+        IQueryable<WebSite> GetAllWebsitesAsQueryable(int userId);
+        IQueryable<ScrapedUrl> GetScrapedUrlsByWebsiteAsQueryable(int websiteId);
+        Task AddWebSiteUrls(WebSite webSite);
     }
 }

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Web", "WebScraper.Web\WebScraper.Web.csproj", "{9022CB08-280A-4B58-A3C5-94C5B2DEFAD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Web", "WebScraper.Web\WebScraper.Web.csproj", "{9022CB08-280A-4B58-A3C5-94C5B2DEFAD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Domain", "WebScraper.Domain\WebScraper.Domain.csproj", "{1BEE0E82-841E-45CC-A6FB-5767E1178DEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Domain", "WebScraper.Domain\WebScraper.Domain.csproj", "{1BEE0E82-841E-45CC-A6FB-5767E1178DEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Application", "WebScraper.Application\WebScraper.Application.csproj", "{F8D17BC7-1DEF-4741-B9D7-917BA020AC20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Application", "WebScraper.Application\WebScraper.Application.csproj", "{F8D17BC7-1DEF-4741-B9D7-917BA020AC20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Infrastructure", "WebScraper.Infrastructure\WebScraper.Infrastructure.csproj", "{C3DC2374-6982-425A-8CE8-F155DEEA1100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScraper.Infrastructure", "WebScraper.Infrastructure\WebScraper.Infrastructure.csproj", "{C3DC2374-6982-425A-8CE8-F155DEEA1100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper.Test", "WebScraper.Test\WebScraper.Test.csproj", "{5C6F69B3-C5F7-4307-BC4D-5497381DF5CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C3DC2374-6982-425A-8CE8-F155DEEA1100}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3DC2374-6982-425A-8CE8-F155DEEA1100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3DC2374-6982-425A-8CE8-F155DEEA1100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6F69B3-C5F7-4307-BC4D-5497381DF5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6F69B3-C5F7-4307-BC4D-5497381DF5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6F69B3-C5F7-4307-BC4D-5497381DF5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6F69B3-C5F7-4307-BC4D-5497381DF5CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

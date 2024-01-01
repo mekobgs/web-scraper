@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebScraper.Application.Helpers;
 using WebScraper.Application.Interface;
 using WebScraper.Domain.Models;
 using WebScraper.Domain.Repository;
+using WebScraper.Infrastructure.Repository;
 
 namespace WebScraper.Infrastructure.Service
 {
@@ -19,14 +21,18 @@ namespace WebScraper.Infrastructure.Service
             _webSiteRepository = webSiteRepository;
         }
 
-        public Task<List<ScrapedUrl>> GetScrapedUrls(int webSiteId)
+        public async Task<PaginatedList<ScrapedUrl>> GetScrapedUrls(int webSiteId, int pageIndex, int pageSize)
         {
-            return _webSiteRepository.GetScrapedUrlsByWebsiteAsync(webSiteId);
+            var query = _webSiteRepository.GetScrapedUrlsByWebsiteAsQueryable(webSiteId);
+            return await PaginatedList<ScrapedUrl>.CreateAsync(query, pageIndex, pageSize);
         }
 
-        public Task<List<WebSite>> GetWebSites()
+        public async Task<PaginatedList<WebSite>> GetWebSites(int pageIndex, int pageSize, int userId)
         {
-            return _webSiteRepository.GetAllWebsitesAsync();
+            var query = _webSiteRepository.GetAllWebsitesAsQueryable(userId);
+
+            return await PaginatedList<WebSite>.CreateAsync(query, pageIndex, pageSize);
+
         }
 
         public async Task<List<ScrapedUrl>> ScrapeUrls(string webSiteUrl)
@@ -44,6 +50,18 @@ namespace WebScraper.Infrastructure.Service
                 .ToList();
 
             return links;
+        }
+
+        public async Task AddWebsiteWithScrapedUrlsAsync(string url, List<ScrapedUrl> scrapedUrls, int userId)
+        {
+            var WebSiteObj = new WebSite
+            {
+                UserId= userId,
+                Url = url,
+                ScrapedUrls = scrapedUrls
+            };
+
+            await _webSiteRepository.AddWebSiteUrls(WebSiteObj);
         }
     }
 }
