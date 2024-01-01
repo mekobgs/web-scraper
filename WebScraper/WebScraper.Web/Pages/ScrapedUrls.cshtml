@@ -1,0 +1,45 @@
+﻿@page "{id:int}"
+@model WebScraper.Web.Pages.ScrapedUrlsModel
+@{
+    ViewData["Title"] = "Scraped URLs";
+}
+
+<h2>Scraped URLs</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var url in Model.ScrapedUrls)
+        {
+                <tr>
+                    <td>@url.Text</td>
+                    <td>@url.Url</td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.ScrapedUrls.TotalPages > 1)
+{
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+            <li class="page-item @(Model.ScrapedUrls.HasPreviousPage ? "" : "disabled")">
+                <a class="page-link" asp-page="./ScrapedUrls" asp-route-pageIndex="@(Model.CurrentPageIndex - 1)">Previous</a>
+                </li>
+            @for (var i = 1; i <= Model.ScrapedUrls.TotalPages; i++)
+            {
+                        <li class="page-item @(i == Model.CurrentPageIndex ? "active" : "")">
+                    <a class="page-link" asp-page="./ScrapedUrls" asp-route-pageIndex="@i">@i</a>
+                        </li>
+            }
+            <li class="page-item @(Model.ScrapedUrls.HasNextPage ? "" : "disabled")">
+                <a class="page-link" asp-page="./ScrapedUrls" asp-route-pageIndex="@(Model.CurrentPageIndex + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+}
