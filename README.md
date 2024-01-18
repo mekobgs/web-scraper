@@ -53,7 +53,3 @@ Now you can run the project and enjoy
 - LinkedIn: [echacon-dev](https://www.linkedin.com/in/echacon-dev/)
 - email: elmerster@gmail.com
 
-
-If you love it, hire me ;)
-
-
